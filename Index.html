@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lescher &amp; Partners | Bienes Raíces en Panamá</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#2C3438;
+    --navy:#3A444A;
+    --navy-light:#4E5A61;
+    --gold:#B08D4B;
+    --gold-light:#D4B876;
+    --ivory:#F2F1ED;
+    --charcoal:#211F1B;
+    --white:#FFFFFF;
+    --line:rgba(176,141,75,0.35);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Work Sans',sans-serif;
+    color:var(--charcoal);
+    background:var(--ivory);
+    line-height:1.6;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.serif{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    letter-spacing:0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  img,svg{display:block;max-width:100%;}
+
+  .container{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  @media(max-width:640px){.container{padding:0 20px;}}
+
+  /* ---------- FOCUS STATES ---------- */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* ---------- REDUCED MOTION ---------- */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(10,26,51,0.0);
+    transition:background 0.4s ease, box-shadow 0.4s ease;
+  }
+  header.scrolled{
+    background:rgba(10,26,51,0.96);
+    box-shadow:0 1px 0 var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 32px;
+    max-width:1180px;margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces',serif;
+    font-size:1.25rem;
+    color:var(--white);
+    letter-spacing:0.02em;
+  }
+  .brand span{color:var(--gold-light);}
+  .nav-links{
+    display:flex;gap:38px;align-items:center;
+  }
+  .nav-links a{
+    color:var(--ivory);
+    font-size:0.92rem;
+    font-weight:400;
+    opacity:0.88;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;
+    width:0;height:1px;background:var(--gold-light);
+    transition:width 0.3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-links a:hover{opacity:1;}
+
+  .lang-toggle{
+    display:flex;align-items:center;gap:6px;
+    border:1px solid var(--line);
+    padding:6px 4px;
+    font-size:0.78rem;
+    color:var(--ivory);
+  }
+  .lang-toggle button{
+    background:none;border:none;color:var(--ivory);
+    padding:2px 8px;cursor:pointer;font-family:'Work Sans',sans-serif;
+    opacity:0.55;
+  }
+  .lang-toggle button.active{
+    color:var(--gold-light);opacity:1;
+  }
+
+  .menu-btn{
+    display:none;
+    background:none;border:none;color:var(--white);
+    font-size:1.6rem;cursor:pointer;
+  }
+
+  @media(max-width:860px){
+    .nav-links{
+      position:fixed;top:0;right:-100%;
+      height:100vh;width:260px;
+      background:var(--navy-deep);
+      flex-direction:column;
+      justify-content:center;
+      gap:32px;
+      transition:right 0.35s ease;
+      padding:40px;
+    }
+    .nav-links.open{right:0;}
+    .menu-btn{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:flex-end;
+    background:linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-light) 100%);
+    overflow:hidden;
+  }
+  .hero-skyline{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    width:100%;
+    padding:0 32px 96px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .hero-rule{
+    width:56px;height:1px;background:var(--gold);margin-bottom:28px;
+  }
+  .hero h1{
+    color:var(--white);
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    font-weight:400;
+    line-height:1.05;
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-light);
+  }
+  .hero p{
+    color:rgba(246,243,236,0.78);
+    font-size:1.05rem;
+    max-width:46ch;
+    margin-top:22px;
+    font-weight:300;
+  }
+  .hero-ctas{
+    display:flex;gap:18px;flex-wrap:wrap;
+    margin-top:40px;
+  }
+  .btn{
+    display:inline-block;
+    padding:15px 30px;
+    font-size:0.9rem;
+    letter-spacing:0.02em;
+    border:1px solid var(--gold);
+    color:var(--white);
+    transition:background 0.3s ease, color 0.3s ease;
+    cursor:pointer;
+    background:none;
+    font-family:'Work Sans',sans-serif;
+  }
+  .btn-solid{
+    background:var(--gold);
+    color:var(--navy-deep);
+  }
+  .btn-solid:hover{background:var(--gold-light);border-color:var(--gold-light);}
+  .btn-outline:hover{background:rgba(176,141,75,0.12);}
+
+  /* ---------- SECTION HEADINGS ---------- */
+  .section{padding:120px 0;}
+  .section-alt{background:var(--navy-deep);color:var(--ivory);}
+  .kicker-rule{
+    width:40px;height:1px;background:var(--gold);margin-bottom:20px;
+  }
+  .section h2{
+    font-size:clamp(1.9rem, 3.4vw, 2.7rem);
+    font-weight:400;
+    max-width:16ch;
+  }
+  .section-alt h2{color:var(--white);}
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:72px;
+    align-items:center;
+  }
+  @media(max-width:860px){.about{grid-template-columns:1fr;gap:48px;}}
+
+  .about-visual{
+    position:relative;
+    padding:24px;
+  }
+  .about-visual::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:20px;bottom:-20px;
+    border:1px solid var(--gold);
+    z-index:0;
+  }
+  .about-visual-inner{
+    position:relative;
+    z-index:1;
+    background:var(--navy-deep);
+    aspect-ratio:4/5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .about-visual-inner .initials{
+    font-family:'Fraunces',serif;
+    font-size:5.5rem;
+    color:var(--gold-light);
+    opacity:0.9;
+  }
+
+  .about-text p{
+    color:#4a463e;
+    max-width:56ch;
+    margin-top:18px;
+  }
+
+  .stat-row{
+    display:flex;
+    gap:48px;
+    margin-top:44px;
+    flex-wrap:wrap;
+  }
+  .stat-num{
+    font-family:'Fraunces',serif;
+    font-size:2.6rem;
+    color:var(--navy-deep);
+  }
+  .stat-num span{color:var(--gold);}
+  .stat-label{
+    font-size:0.82rem;
+    color:#6b6558;
+    margin-top:4px;
+    max-width:16ch;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    margin-top:60px;
+  }
+  @media(max-width:920px){.services-row{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.services-row{grid-template-columns:1fr;}}
+
+  .service-item{
+    padding:0 30px 30px 0;
+    border-left:1px solid rgba(246,243,236,0.15);
+    padding-left:30px;
+  }
+  .service-item:first-child{border-left:none;padding-left:0;}
+  @media(max-width:920px){
+    .service-item:nth-child(odd){border-left:none;padding-left:0;}
+    .service-item{border-left:1px solid rgba(246,243,236,0.15);padding-top:30px;border-top:1px solid rgba(246,243,236,0.15);}
+    .service-item:nth-child(-n+2){border-top:none;padding-top:0;}
+  }
+  .service-item h3{
+    color:var(--gold-light);
+    font-size:1.2rem;
+    font-weight:400;
+    margin-bottom:14px;
+  }
+  .service-item p{
+    color:rgba(246,243,236,0.72);
+    font-size:0.92rem;
+    max-width:26ch;
+  }
+
+  /* ---------- PROPERTIES ---------- */
+  .prop-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    grid-template-rows:auto auto;
+    gap:28px;
+    margin-top:60px;
+  }
+  .prop-card{
+    position:relative;
+    background:var(--navy-deep);
+    color:var(--white);
+    overflow:hidden;
+    border:1px solid transparent;
+    transition:border-color 0.3s ease;
+  }
+  .prop-card:hover{border-color:var(--gold);}
+  .prop-card.large{grid-row:span 2;}
+  .prop-visual{
+    aspect-ratio:16/11;
+    position:relative;
+    overflow:hidden;
+  }
+  .prop-card.large .prop-visual{aspect-ratio:16/13;}
+  .prop-visual svg{width:100%;height:100%;}
+  .prop-body{padding:26px 28px 30px;}
+  .prop-tag{
+    font-size:0.72rem;
+    color:var(--gold-light);
+    letter-spacing:0.04em;
+    margin-bottom:10px;
+  }
+  .prop-body h3{
+    font-size:1.25rem;
+    font-weight:400;
+    margin-bottom:8px;
+  }
+  .prop-body p{
+    color:rgba(246,243,236,0.68);
+    font-size:0.9rem;
+    margin-bottom:16px;
+  }
+  .prop-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid rgba(246,243,236,0.15);
+    padding-top:14px;
+    font-size:0.85rem;
+  }
+  .prop-price{color:var(--gold-light);font-family:'Fraunces',serif;font-size:1.05rem;}
+
+  @media(max-width:800px){
+    .prop-grid{grid-template-columns:1fr;}
+    .prop-card.large{grid-row:auto;}
+  }
+
+  .prop-note{
+    text-align:center;
+    margin-top:36px;
+    color:#6b6558;
+    font-size:0.88rem;
+    font-style:italic;
+  }
+
+  /* ---------- STATS STRIP ---------- */
+  .strip{
+    background:var(--gold);
+    padding:46px 0;
+  }
+  .strip-inner{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+  }
+  .strip-item{color:var(--navy-deep);}
+  .strip-item .n{
+    font-family:'Fraunces',serif;
+    font-size:2rem;
+  }
+  .strip-item .l{
+    font-size:0.82rem;
+    margin-top:2px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+  }
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+
+  .contact-panel{
+    background:var(--navy-deep);
+    color:var(--white);
+    padding:90px 60px;
+  }
+  @media(max-width:640px){.contact-panel{padding:70px 28px;}}
+  .contact-panel h2{color:var(--white);margin-bottom:26px;}
+  .contact-line{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    margin-top:34px;
+  }
+  .contact-line a, .contact-line span{
+    font-size:0.98rem;
+    color:rgba(246,243,236,0.85);
+  }
+  .contact-line .label{
+    display:block;
+    font-size:0.72rem;
+    color:var(--gold-light);
+    letter-spacing:0.04em;
+    margin-bottom:4px;
+  }
+  .zones{
+    margin-top:40px;
+    padding-top:28px;
+    border-top:1px solid rgba(246,243,236,0.15);
+  }
+  .zones .label{font-size:0.72rem;color:var(--gold-light);letter-spacing:0.04em;}
+  .zones ul{list-style:none;margin-top:10px;}
+  .zones li{
+    font-size:0.92rem;
+    color:rgba(246,243,236,0.75);
+    padding:6px 0;
+  }
+
+  .form-panel{
+    background:var(--ivory);
+    padding:90px 60px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  @media(max-width:640px){.form-panel{padding:70px 28px;}}
+  .field{margin-bottom:22px;}
+  .field label{
+    display:block;
+    font-size:0.8rem;
+    color:#6b6558;
+    margin-bottom:8px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    border:none;
+    border-bottom:1px solid #c9c2b0;
+    background:transparent;
+    padding:10px 2px;
+    font-family:'Work Sans',sans-serif;
+    font-size:1rem;
+    color:var(--charcoal);
+  }
+  .field textarea{resize:vertical;min-height:90px;}
+  .field input:focus, .field textarea:focus{border-bottom-color:var(--gold);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--navy-deep);
+    color:rgba(246,243,236,0.55);
+    padding:40px 0;
+    border-top:1px solid rgba(246,243,236,0.1);
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+    font-size:0.82rem;
+  }
+  .footer-brand{
+    font-family:'Fraunces',serif;
+    color:var(--gold-light);
+    font-size:1rem;
+  }
+
+  [data-i18n-hide]{display:none;}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav>
+    <div class="brand">Lescher <span>&amp;</span> Partners</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+      <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
+      <a href="#propiedades" data-es="Propiedades" data-en="Properties">Propiedades</a>
+      <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+      <div class="lang-toggle">
+        <button id="btnEs" class="active" onclick="setLang('es')">ES</button>
+        <span style="color:rgba(246,243,236,0.3)">/</span>
+        <button id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-skyline" viewBox="0 0 1200 260" preserveAspectRatio="none" aria-hidden="true">
+    <rect x="40" y="120" width="46" height="140" fill="#242A2E"/>
+    <rect x="95" y="90" width="34" height="170" fill="#242A2E"/>
+    <rect x="140" y="150" width="40" height="110" fill="#333C42"/>
+    <rect x="195" y="60" width="30" height="200" fill="#242A2E"/>
+    <rect x="235" y="110" width="50" height="150" fill="#333C42"/>
+    <rect x="300" y="40" width="26" height="220" fill="#242A2E"/>
+    <rect x="335" y="130" width="36" height="130" fill="#333C42"/>
+    <rect x="385" y="80" width="30" height="180" fill="#242A2E"/>
+    <rect x="425" y="150" width="44" height="110" fill="#333C42"/>
+    <rect x="480" y="20" width="24" height="240" fill="#242A2E"/>
+    <circle cx="492" cy="10" r="6" fill="#242A2E"/>
+    <rect x="515" y="100" width="34" height="160" fill="#333C42"/>
+    <rect x="560" y="60" width="30" height="200" fill="#242A2E"/>
+    <rect x="600" y="140" width="46" height="120" fill="#333C42"/>
+    <rect x="660" y="90" width="28" height="170" fill="#242A2E"/>
+    <rect x="700" y="30" width="22" height="230" fill="#242A2E"/>
+    <rect x="732" y="110" width="40" height="150" fill="#333C42"/>
+    <rect x="785" y="70" width="32" height="190" fill="#242A2E"/>
+    <rect x="828" y="140" width="44" height="120" fill="#333C42"/>
+    <rect x="885" y="50" width="26" height="210" fill="#242A2E"/>
+    <rect x="920" y="120" width="36" height="140" fill="#333C42"/>
+    <rect x="968" y="85" width="30" height="175" fill="#242A2E"/>
+    <rect x="1010" y="150" width="42" height="110" fill="#333C42"/>
+    <rect x="1065" y="100" width="28" height="160" fill="#242A2E"/>
+    <rect x="1105" y="60" width="30" height="200" fill="#333C42"/>
+    <rect x="1145" y="130" width="24" height="130" fill="#242A2E"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-rule"></div>
+    <h1 data-es="Su puerta a Panamá." data-en="Your gateway to Panama.">Su puerta a Panamá.</h1>
+    <p data-es="Asesoría inmobiliaria en Ciudad de Panamá, Costa del Este y Punta Pacífica, para quienes construyen su futuro más allá de las fronteras."
+       data-en="Real estate advisory in Panama City, Costa del Este, and Punta Pacífica, for those building their future beyond borders.">
+       Asesoría inmobiliaria en Ciudad de Panamá, Costa del Este y Punta Pacífica, para quienes construyen su futuro más allá de las fronteras.
+    </p>
+    <div class="hero-ctas">
+      <a href="#propiedades" class="btn btn-solid" data-es="Ver propiedades" data-en="View properties">Ver propiedades</a>
+      <a href="https://wa.me/50768141709" target="_blank" rel="noopener" class="btn btn-outline" data-es="Hablemos por WhatsApp" data-en="Message on WhatsApp">Hablemos por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="nosotros">
+  <div class="container about">
+    <div class="about-visual">
+      <div class="about-visual-inner">
+        <span class="initials">AL</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="kicker-rule"></div>
+      <h2 data-es="Alfredo Lescher" data-en="Alfredo Lescher">Alfredo Lescher</h2>
+      <p data-es="Alfredo fundó Lescher &amp; Partners tras más de diez años asesorando a compradores internacionales en el mercado panameño. Su enfoque combina un conocimiento profundo del terreno local con los estándares de servicio que esperan los clientes de Norteamérica y Europa."
+         data-en="Alfredo founded Lescher &amp; Partners after more than ten years advising international buyers in the Panamanian market. His approach combines deep local market knowledge with the service standards expected by clients from North America and Europe.">
+         Alfredo fundó Lescher &amp; Partners tras más de diez años asesorando a compradores internacionales en el mercado panameño. Su enfoque combina un conocimiento profundo del terreno local con los estándares de servicio que esperan los clientes de Norteamérica y Europa.
+      </p>
+      <div class="stat-row">
+        <div>
+          <div class="stat-num"><span>10+</span></div>
+          <div class="stat-label" data-es="Años de experiencia" data-en="Years of experience">Años de experiencia</div>
+        </div>
+        <div>
+          <div class="stat-num">3</div>
+          <div class="stat-label" data-es="Zonas de Panamá" data-en="Areas covered">Zonas de Panamá</div>
+        </div>
+        <div>
+          <div class="stat-num">3</div>
+          <div class="stat-label" data-es="Países de origen de clientes" data-en="Client home countries">Países de origen de clientes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-alt" id="servicios">
+  <div class="container">
+    <div class="kicker-rule"></div>
+    <h2 data-es="Servicios" data-en="Services">Servicios</h2>
+    <div class="services-row">
+      <div class="service-item">
+        <h3 data-es="Venta de propiedades" data-en="Property sales">Venta de propiedades</h3>
+        <p data-es="Acompañamiento completo, desde la búsqueda hasta el cierre notarial."
+           data-en="Full support, from the search to the closing.">
+           Acompañamiento completo, desde la búsqueda hasta el cierre notarial.
+        </p>
+      </div>
+      <div class="service-item">
+        <h3 data-es="Alquiler" data-en="Rentals">Alquiler</h3>
+        <p data-es="Propiedades residenciales y comerciales, para estadías cortas o contratos a largo plazo."
+           data-en="Residential and commercial rentals, short-term or long-term.">
+           Propiedades residenciales y comerciales, para estadías cortas o contratos a largo plazo.
+        </p>
+      </div>
+      <div class="service-item">
+        <h3 data-es="Inversión" data-en="Investment">Inversión</h3>
+        <p data-es="Análisis de retorno y proyección de plusvalía en las zonas de mayor crecimiento."
+           data-en="Return analysis and appreciation forecasts in Panama's fastest-growing areas.">
+           Análisis de retorno y proyección de plusvalía en las zonas de mayor crecimiento.
+        </p>
+      </div>
+      <div class="service-item">
+        <h3 data-es="Asesoría" data-en="Advisory">Asesoría</h3>
+        <p data-es="Orientación legal, fiscal y migratoria para compradores extranjeros."
+           data-en="Legal, tax, and residency guidance for foreign buyers.">
+           Orientación legal, fiscal y migratoria para compradores extranjeros.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTIES -->
+<section class="section" id="propiedades">
+  <div class="container">
+    <div class="kicker-rule"></div>
+    <h2 data-es="Propiedades destacadas" data-en="Featured properties">Propiedades destacadas</h2>
+
+    <div class="prop-grid">
+      <div class="prop-card large">
+        <div class="prop-visual">
+          <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice">
+            <rect width="500" height="400" fill="#242A2E"/>
+            <rect x="80" y="60" width="60" height="300" fill="#465257"/>
+            <rect x="160" y="20" width="50" height="340" fill="#333C42"/>
+            <rect x="230" y="100" width="70" height="260" fill="#465257"/>
+            <rect x="320" y="50" width="55" height="310" fill="#333C42"/>
+            <rect x="390" y="130" width="60" height="230" fill="#465257"/>
+            <circle cx="360" cy="30" r="10" fill="#D4B876" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="prop-body">
+          <div class="prop-tag" data-es="PUNTA PACÍFICA" data-en="PUNTA PACÍFICA">PUNTA PACÍFICA</div>
+          <h3 data-es="Torre Bahía" data-en="Bahía Tower">Torre Bahía</h3>
+          <p data-es="Vista panorámica a la bahía de Panamá, 3 habitaciones, amenidades de resort."
+             data-en="Panoramic views of Panama Bay, 3 bedrooms, resort-style amenities.">
+             Vista panorámica a la bahía de Panamá, 3 habitaciones, amenidades de resort.
+          </p>
+          <div class="prop-meta">
+            <span data-es="3 hab · 3.5 baños" data-en="3 bed · 3.5 bath">3 hab · 3.5 baños</span>
+            <span class="prop-price">$650,000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prop-card">
+        <div class="prop-visual">
+          <svg viewBox="0 0 500 260" preserveAspectRatio="xMidYMid slice">
+            <rect width="500" height="260" fill="#333C42"/>
+            <rect x="40" y="120" width="380" height="140" fill="#242A2E"/>
+            <rect x="60" y="60" width="70" height="200" fill="#465257"/>
+            <rect x="150" y="90" width="60" height="170" fill="#242A2E"/>
+            <rect x="230" y="40" width="65" height="220" fill="#465257"/>
+            <rect x="320" y="100" width="55" height="160" fill="#242A2E"/>
+          </svg>
+        </div>
+        <div class="prop-body">
+          <div class="prop-tag" data-es="COSTA DEL ESTE" data-en="COSTA DEL ESTE">COSTA DEL ESTE</div>
+          <h3 data-es="Residencial del Este" data-en="Del Este Residence">Residencial del Este</h3>
+          <p data-es="Comunidad cerrada, a minutos de la zona financiera."
+             data-en="Gated community, minutes from the financial district.">
+             Comunidad cerrada, a minutos de la zona financiera.
+          </p>
+          <div class="prop-meta">
+            <span data-es="4 hab · 3 baños" data-en="4 bed · 3 bath">4 hab · 3 baños</span>
+            <span class="prop-price">$480,000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prop-card">
+        <div class="prop-visual">
+          <svg viewBox="0 0 500 260" preserveAspectRatio="xMidYMid slice">
+            <rect width="500" height="260" fill="#242A2E"/>
+            <rect x="100" y="30" width="40" height="230" fill="#333C42"/>
+            <rect x="150" y="90" width="220" height="170" fill="#465257"/>
+            <rect x="380" y="60" width="40" height="200" fill="#333C42"/>
+          </svg>
+        </div>
+        <div class="prop-body">
+          <div class="prop-tag" data-es="CIUDAD DE PANAMÁ" data-en="PANAMA CITY">CIUDAD DE PANAMÁ</div>
+          <h3 data-es="Oficina Ejecutiva" data-en="Executive Office">Oficina Ejecutiva</h3>
+          <p data-es="Espacio comercial en el corazón financiero de la ciudad."
+             data-en="Commercial space in the city's financial heart.">
+             Espacio comercial en el corazón financiero de la ciudad.
+          </p>
+          <div class="prop-meta">
+            <span data-es="180 m²" data-en="1,940 sq ft">180 m²</span>
+            <span class="prop-price">$320,000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="prop-note" data-es="Propiedades ilustrativas. Escríbenos para conocer el inventario actual."
+       data-en="Illustrative properties. Contact us for the current inventory.">
+       Propiedades ilustrativas. Escríbenos para conocer el inventario actual.
+    </p>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="container strip-inner">
+    <div class="strip-item">
+      <div class="n">10+</div>
+      <div class="l" data-es="Años en el mercado" data-en="Years in the market">Años en el mercado</div>
+    </div>
+    <div class="strip-item">
+      <div class="n">3</div>
+      <div class="l" data-es="Zonas premium" data-en="Premium areas">Zonas premium</div>
+    </div>
+    <div class="strip-item">
+      <div class="n">EN · ES</div>
+      <div class="l" data-es="Servicio bilingüe" data-en="Bilingual service">Servicio bilingüe</div>
+    </div>
+    <div class="strip-item">
+      <div class="n">US · CA · ES</div>
+      <div class="l" data-es="Clientes internacionales" data-en="International clients">Clientes internacionales</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contacto">
+  <div class="contact-grid">
+    <div class="contact-panel">
+      <div class="kicker-rule"></div>
+      <h2 data-es="Conversemos" data-en="Let's talk">Conversemos</h2>
+      <p style="color:rgba(246,243,236,0.7); max-width:40ch;"
+         data-es="Cuéntanos qué buscas y te contactamos en menos de 24 horas."
+         data-en="Tell us what you're looking for and we'll reach out within 24 hours.">
+         Cuéntanos qué buscas y te contactamos en menos de 24 horas.
+      </p>
+      <div class="contact-line">
+        <div><span class="label" data-es="WhatsApp / Teléfono" data-en="WhatsApp / Phone">WhatsApp / Teléfono</span>
+          <a href="https://wa.me/50768141709" target="_blank" rel="noopener">+507 6814-1709</a>
+        </div>
+        <div><span class="label">Email</span>
+          <a href="mailto:alf.lescher@gmail.com">alf.lescher@gmail.com</a>
+        </div>
+        <div><span class="label" data-es="Instagram" data-en="Instagram">Instagram</span>
+          <a href="https://instagram.com/alfredolescher" target="_blank" rel="noopener">@alfredolescher</a>
+        </div>
+      </div>
+      <div class="zones">
+        <span class="label" data-es="Zonas de cobertura" data-en="Areas served">Zonas de cobertura</span>
+        <ul>
+          <li data-es="Ciudad de Panamá" data-en="Panama City">Ciudad de Panamá</li>
+          <li data-es="Costa del Este" data-en="Costa del Este">Costa del Este</li>
+          <li data-es="Punta Pacífica" data-en="Punta Pacífica">Punta Pacífica</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-panel">
+      <form id="contactForm">
+        <div class="field">
+          <label for="fname" data-es="Nombre" data-en="Name">Nombre</label>
+          <input type="text" id="fname" required>
+        </div>
+        <div class="field">
+          <label for="femail" data-es="Correo electrónico" data-en="Email">Correo electrónico</label>
+          <input type="email" id="femail" required>
+        </div>
+        <div class="field">
+          <label for="fphone" data-es="Teléfono (opcional)" data-en="Phone (optional)">Teléfono (opcional)</label>
+          <input type="tel" id="fphone">
+        </div>
+        <div class="field">
+          <label for="fmsg" data-es="Mensaje" data-en="Message">Mensaje</label>
+          <textarea id="fmsg" required data-es-ph="Cuéntanos qué tipo de propiedad buscas..." data-en-ph="Tell us what kind of property you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-solid" style="color:var(--navy-deep); border-color:var(--navy-deep);" data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">Lescher &amp; Partners</div>
+    <div data-es="© 2026 Lescher &amp; Partners. Todos los derechos reservados." data-en="© 2026 Lescher &amp; Partners. All rights reserved.">
+      © 2026 Lescher &amp; Partners. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile nav
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Language toggle
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.getElementById('btnEs').classList.toggle('active', lang === 'es');
+    document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+
+    document.querySelectorAll('[data-es][data-en]').forEach(el => {
+      el.textContent = el.getAttribute('data-' + lang);
+    });
+    document.querySelectorAll('[data-es-ph][data-en-ph]').forEach(el => {
+      el.setAttribute('placeholder', el.getAttribute('data-' + lang + '-ph'));
+    });
+
+    document.title = lang === 'es'
+      ? 'Lescher & Partners | Bienes Raíces en Panamá'
+      : 'Lescher & Partners | Panama Real Estate';
+  }
+  setLang('es');
+
+  // Contact form -> opens mail client with prefilled content
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('fname').value;
+    const email = document.getElementById('femail').value;
+    const phone = document.getElementById('fphone').value;
+    const msg = document.getElementById('fmsg').value;
+    const subject = encodeURIComponent('Consulta desde el sitio web - ' + name);
+    const body = encodeURIComponent(
+      'Nombre: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'Teléfono: ' + phone + '\n\n' +
+      'Mensaje:\n' + msg
+    );
+    window.location.href = 'mailto:alf.lescher@gmail.com?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
